@@ -195,6 +195,7 @@ type Store = {
   saveOnboarding: (o: Onboarding) => void;
   signIn: () => void;
   signOut: () => void;
+  enterDemo: () => void;
 };
 
 const StoreCtx = createContext<Store | null>(null);
@@ -350,11 +351,28 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   const signIn = useCallback(() => setOnboarding((o) => ({ ...o, signedIn: true })), []);
   const signOut = useCallback(() => setOnboarding(DEFAULT_ONBOARDING), []);
 
+  /* "Explore demo" jumps straight to the dashboard: clears both the signedIn and
+     completed gates so App's Guard does not bounce the user back to /login. */
+  const enterDemo = useCallback(
+    () =>
+      setOnboarding({
+        ...DEFAULT_ONBOARDING,
+        signedIn: true,
+        completed: true,
+        name: "Demo Member",
+        email: "demo@houseofsante.in",
+        goals: ["Build strength", "Improve mobility"],
+        experience: "intermediate",
+        assessed: true,
+      }),
+    [],
+  );
+
   const value: Store = {
     ready, bookings, progress, records, checkIns, version, onboarding,
     reload: load, createBooking, setBookingStatus, deleteBooking,
     addProgress, deleteProgress, addRecord, deleteRecord, checkIn,
-    toggleLog, isLogged, saveOnboarding, signIn, signOut,
+    toggleLog, isLogged, saveOnboarding, signIn, signOut, enterDemo,
   };
 
   return <StoreCtx.Provider value={value}>{children}</StoreCtx.Provider>;

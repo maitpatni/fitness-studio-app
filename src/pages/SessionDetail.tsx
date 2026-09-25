@@ -88,7 +88,7 @@ export function SessionDetail() {
         <button
           type="button"
           onClick={() => navigate(`/trainers/${booking.trainer_id}`)}
-          className="flex w-full items-center gap-3.5 rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-left transition-colors hover:border-gold/25"
+          className="flex w-full items-center gap-3.5 rounded-2xl border border-white/70 neu-raised p-4 text-left transition-colors hover:border-gold/25"
         >
           <Avatar initials={split(booking.trainer_name)} size={46} />
           <div className="min-w-0 flex-1">
@@ -116,7 +116,7 @@ export function SessionDetail() {
               onClick={() => toggleLog(doneKey)}
               className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[12px] font-medium transition-colors ${
                 done
-                  ? "border-sage/50 bg-sage/15 text-[#a9c4ac]"
+                  ? "border-sage/50 bg-sage/15 text-sage"
                   : "border-white/12 text-mist"
               }`}
             >
@@ -142,7 +142,7 @@ export function SessionDetail() {
                     >
                       <span
                         className={`grid h-5 w-5 shrink-0 place-items-center rounded-md border ${
-                          on ? "border-sage bg-sage/80 text-[#0d120e]" : "border-white/20"
+                          on ? "border-sage bg-sage/80 text-white" : "border-violet-line bg-ink"
                         }`}
                       >
                         {on ? <Check size={12} strokeWidth={3} /> : null}

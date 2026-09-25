@@ -152,15 +152,15 @@ export function Home() {
             label="Sessions left"
             value={`${remaining}`}
             sub={`of ${MEMBERSHIP.purchased + MEMBERSHIP.bonus}`}
-            accent="#6d28d9"
+            accent="#ff6b3d"
           />
           <StatCard
             label="Package ends"
             value={`${Math.max(0, daysLeft)}`}
             sub="days"
-            accent="#8b5cf6"
+            accent="#ff8a5c"
           />
-          <StatCard label="Streak" value={`${streak}`} sub="weeks" accent="#4c1d95" />
+          <StatCard label="Streak" value={`${streak}`} sub="weeks" accent="#e2501f" />
         </div>
       </Reveal>
 
@@ -215,7 +215,7 @@ export function Home() {
                 max={30}
                 label={lastProgress?.body_fat_pct ? `${Number(lastProgress.body_fat_pct)}%` : "23%"}
                 sub="body fat"
-                accent="#6d28d9"
+                accent="#ff6b3d"
                 size={84}
               />
               <div className="min-w-0 flex-1 space-y-2.5">

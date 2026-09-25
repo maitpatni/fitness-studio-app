@@ -141,7 +141,7 @@ export function Book() {
                   setDate(null);
                   setTime(null);
                 }}
-                className="flex w-full items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-left transition-all hover:border-gold/35 active:scale-[0.99]"
+                className="flex w-full items-center gap-4 rounded-2xl border border-white/70 neu-raised p-4 text-left transition-all hover:border-gold/35 active:scale-[0.99]"
               >
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-gold/25 bg-gold/10 text-gold">
                   {t.id === "duo" ? <Users size={18} /> : t.id === "hyrox" ? <ShieldCheck size={18} /> : <CalendarCheck size={18} />}
@@ -197,7 +197,7 @@ export function Book() {
                   setDate(null);
                   setTime(null);
                 }}
-                className="flex w-full items-start gap-3.5 rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-left transition-all hover:border-gold/35 active:scale-[0.99]"
+                className="flex w-full items-start gap-3.5 rounded-2xl border border-white/70 neu-raised p-4 text-left transition-all hover:border-gold/35 active:scale-[0.99]"
               >
                 <Avatar initials={t.initials} accent={t.accent} size={48} />
                 <span className="min-w-0 flex-1">
@@ -499,7 +499,7 @@ export function SessionList() {
                 <button
                   type="button"
                   onClick={() => navigate(`/session/${b.id}`)}
-                  className="w-full rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-left transition-colors hover:border-gold/25"
+                  className="w-full rounded-2xl border border-white/70 neu-raised p-4 text-left transition-colors hover:border-gold/25"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">

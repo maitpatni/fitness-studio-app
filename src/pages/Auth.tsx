@@ -39,8 +39,8 @@ export function Splash() {
     <div className="grain relative flex h-[100dvh] flex-col items-center justify-center overflow-hidden bg-ink px-8">
       <StudioArt />
       <div className="relative z-10 flex flex-col items-center">
-        <div className="anim-fade mb-7 grid h-20 w-20 place-items-center rounded-[26px] border border-gold/30 bg-gradient-to-br from-gold-soft to-gold shadow-[0_20px_60px_-20px_rgba(212,180,131,0.7)]">
-          <span className="font-serif text-[40px] font-semibold leading-none text-[#17130c]">S</span>
+        <div className="anim-fade mb-7 grid h-20 w-20 place-items-center rounded-[26px] border border-white/70 bg-gradient-to-br from-gold-soft to-gold shadow-[0_20px_60px_-20px_rgba(226,80,31,0.8)]">
+          <span className="font-serif text-[40px] font-semibold leading-none text-white">S</span>
         </div>
         <h1 className="anim-rise font-serif text-[38px] font-semibold leading-none tracking-wide text-fog">
           House of Santè
@@ -63,7 +63,7 @@ export function Splash() {
 
 export function Login() {
   const navigate = useNavigate();
-  const { signIn, onboarding, saveOnboarding } = useStore();
+  const { signIn, onboarding, saveOnboarding, enterDemo } = useStore();
   const [phone, setPhone] = useState("98765 43210");
   const [step, setStep] = useState<"phone" | "otp">("phone");
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -111,8 +111,11 @@ export function Login() {
       <StudioArt />
       <button
         type="button"
-        onClick={() => navigate("/")}
-        className="anim-fade absolute right-4 top-4 z-20 rounded-full border border-white/12 bg-white/5 px-4 py-2 text-[12px] text-mist"
+        onClick={() => {
+          enterDemo();
+          navigate("/");
+        }}
+        className="anim-fade absolute right-4 top-4 z-20 rounded-full border border-white/70 neu-button px-4 py-2 text-[12px] font-medium text-fog"
       >
         Explore demo
       </button>
@@ -217,7 +220,7 @@ export function Login() {
                 </button>
               )}
             </p>
-            <p className="rounded-xl border border-white/8 bg-white/[0.03] px-4 py-3 text-[12px] leading-relaxed text-mist">
+            <p className="rounded-xl border border-white/70 neu-sunken px-4 py-3 text-[12px] leading-relaxed text-mist">
               <ShieldCheck size={13} className="mr-1.5 inline text-gold" />
               Demo code is <span className="font-cond text-fog">202609</span>. In production this
               is verified server-side before your session is created.
@@ -399,7 +402,7 @@ export function OnboardingFlow() {
                     ))}
                   </div>
                 </div>
-                <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                <div className="flex items-center justify-between rounded-2xl border border-white/70 neu-raised p-4">
                   <div className="pr-3">
                     <p className="text-[14px] font-medium text-fog">Book a readiness assessment</p>
                     <p className="mt-0.5 text-[12px] leading-relaxed text-mist">
@@ -424,7 +427,7 @@ export function OnboardingFlow() {
                   </button>
                 </div>
                 <div className="rounded-2xl border border-sage/25 bg-sage/[0.08] p-4">
-                  <p className="text-[12px] leading-relaxed text-[#b6cbb8]">
+                  <p className="text-[12px] leading-relaxed text-sage">
                     Only your assigned coach and authorised staff can see health answers. This is
                     never shared with other members.
                   </p>
@@ -449,7 +452,7 @@ export function OnboardingFlow() {
                 <button
                   type="button"
                   onClick={() => setInfo(true)}
-                  className="w-full rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-left"
+                  className="w-full rounded-2xl border border-white/70 neu-raised p-4 text-left"
                 >
                   <p className="text-[14px] font-medium text-fog">How we handle your data</p>
                   <p className="mt-0.5 text-[12px] leading-relaxed text-mist">
@@ -463,7 +466,7 @@ export function OnboardingFlow() {
         </div>
       </div>
 
-      <div className="shrink-0 border-t border-white/8 bg-ink px-5 pb-[max(env(safe-area-inset-bottom),14px)] pt-3">
+      <div className="shrink-0 border-t border-violet-line bg-ink px-5 pb-[max(env(safe-area-inset-bottom),14px)] pt-3">
         {step === 4 && !consent ? (
           <p className="mb-2 text-center text-[12px] text-mist">Accept the waiver to continue.</p>
         ) : null}
@@ -514,12 +517,12 @@ function ToggleRow({
     <button
       type="button"
       onClick={() => onChange(!checked)}
-      className="flex w-full items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-left"
+      className="flex w-full items-start gap-3 rounded-2xl border border-white/70 neu-raised p-4 text-left"
     >
       <span
         className={cn(
           "mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-md border transition-colors",
-          checked ? "border-gold bg-gold text-[#17130c]" : "border-white/20",
+          checked ? "border-gold bg-gold text-white" : "border-violet-line bg-ink",
         )}
       >
         {checked ? <Check size={13} strokeWidth={3} /> : null}

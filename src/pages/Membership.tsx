@@ -57,9 +57,9 @@ export function Membership() {
               <p className="text-[15px] font-medium text-fog">{MEMBERSHIP.name}</p>
               <p className="mt-0.5 text-[12px] text-mist">{MEMBERSHIP.id}</p>
               <div className="mt-3 space-y-1.5">
-                <Meter label="Purchased" value={MEMBERSHIP.purchased} accent="#6d28d9" />
-                <Meter label="Used" value={used} accent="#a78bfa" />
-                {MEMBERSHIP.bonus > 0 ? <Meter label="Bonus" value={MEMBERSHIP.bonus} accent="#4c1d95" /> : null}
+                <Meter label="Purchased" value={MEMBERSHIP.purchased} accent="#ff6b3d" />
+                <Meter label="Used" value={used} accent="#ff8a5c" />
+                {MEMBERSHIP.bonus > 0 ? <Meter label="Bonus" value={MEMBERSHIP.bonus} accent="#e2501f" /> : null}
               </div>
             </div>
           </div>

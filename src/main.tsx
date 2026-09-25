@@ -40,7 +40,7 @@ class ErrorBoundary extends React.Component<
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(135deg, #fdf2f8, #faf5ff, #eff6ff)',
+          background: '#e9ecf1',
           fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
           padding: '24px'
         }}>
@@ -57,7 +57,7 @@ class ErrorBoundary extends React.Component<
               width: '48px',
               height: '48px',
               borderRadius: '12px',
-              background: 'linear-gradient(135deg, #8b5cf6, #6366f1)',
+              background: 'linear-gradient(140deg, #ff8a5c, #e2501f)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -81,7 +81,7 @@ class ErrorBoundary extends React.Component<
             <button
               onClick={() => window.location.reload()}
               style={{
-                background: 'linear-gradient(135deg, #8b5cf6, #6366f1)',
+                background: 'linear-gradient(140deg, #ff8a5c, #e2501f)',
                 color: 'white',
                 border: 'none',
                 borderRadius: '10px',
@@ -104,7 +104,25 @@ class ErrorBoundary extends React.Component<
   }
 }
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+const container = document.getElementById("root");
+if (!container) throw new Error('Root container #root not found');
+
+/* Reuse the existing root across HMR re-execution. Without this, every time
+   this module is re-evaluated the dev server calls createRoot() again on the
+   same container, which React rejects with:
+   "You are calling ReactDOMClient.createRoot() on a container that has already
+    been passed to createRoot() before." */
+type RootHandle = { render: (node: React.ReactNode) => void };
+const ROOT_KEY = "__hos_react_root";
+const host = window as unknown as Record<string, RootHandle | undefined>;
+
+let root = host[ROOT_KEY];
+if (!root) {
+  root = ReactDOM.createRoot(container);
+  host[ROOT_KEY] = root;
+}
+
+root.render(
   <React.StrictMode>
     <ErrorBoundary>
       <App />

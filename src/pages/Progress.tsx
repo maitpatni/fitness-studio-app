@@ -187,7 +187,7 @@ function Overview({ delta }: { delta: (k: string) => string }) {
             delta={delta("weight_kg")}
             good
             icon={<Gauge size={14} />}
-            accent="#d4b483"
+            accent="#ff8a5c"
           />
           <HeadlineCard
             label="Body fat"
@@ -195,7 +195,7 @@ function Overview({ delta }: { delta: (k: string) => string }) {
             delta={delta("body_fat_pct")}
             good
             icon={<Target size={14} />}
-            accent="#7f9a83"
+            accent="#5b8def"
           />
         </div>
       </Reveal>
@@ -210,7 +210,7 @@ function Overview({ delta }: { delta: (k: string) => string }) {
             values={progress.map((p) => Number(p.weight_kg))}
             labels={labels}
             unit="kg"
-            accent="#d4b483"
+            accent="#ff8a5c"
           />
         </Surface>
       </Reveal>
@@ -225,7 +225,7 @@ function Overview({ delta }: { delta: (k: string) => string }) {
             values={progress.map((p) => Number(p.body_fat_pct))}
             labels={labels}
             unit="%"
-            accent="#7f9a83"
+            accent="#5b8def"
             invert
           />
         </Surface>
@@ -241,7 +241,7 @@ function Overview({ delta }: { delta: (k: string) => string }) {
             values={progress.map((p) => Number(p.waist_cm))}
             labels={labels}
             unit="cm"
-            accent="#8c9ab0"
+            accent="#9aa3af"
             invert
           />
         </Surface>
@@ -345,7 +345,7 @@ function Measurements({
                 </div>
                 <div className="mt-3 grid grid-cols-3 gap-2">
                   {MEASUREMENT_FIELDS.map((f) => (
-                    <div key={f.key} className="rounded-lg bg-white/[0.03] p-2 text-center">
+                    <div key={f.key} className="rounded-lg neu-sunken p-2 text-center">
                       <p className="text-[9px] tracking-wide text-mist/80">{f.label}</p>
                       <p className="mt-0.5 font-cond text-[14px] tabular-nums text-fog">
                         {p[f.key] === null ? "—" : Number(p[f.key])}
@@ -402,7 +402,7 @@ function Records({ onAdd, onDelete }: { onAdd: () => void; onDelete: (id: string
                 <span
                   className="grid h-9 w-9 shrink-0 place-items-center rounded-full font-cond text-[14px] tabular-nums"
                   style={{
-                    color: i === 0 ? "#d4b483" : "#a2a29d",
+                    color: i === 0 ? "#ff6b3d" : "#a2a29d",
                     background: i === 0 ? "rgba(212,180,131,0.14)" : "rgba(255,255,255,0.05)",
                   }}
                 >

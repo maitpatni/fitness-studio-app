@@ -210,7 +210,7 @@ export function Profile() {
               ))}
             </div>
           </div>
-          <p className="rounded-xl border border-sage/25 bg-sage/[0.07] p-3.5 text-[12px] leading-relaxed text-[#166534]">
+          <p className="rounded-xl border border-sage/25 bg-sage/[0.07] p-3.5 text-[12px] leading-relaxed text-sage">
             Only {trainer?.name ?? "your coach"} and authorised staff can read this. It is never
             shown to other members.
           </p>

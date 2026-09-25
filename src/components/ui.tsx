@@ -14,12 +14,7 @@ export function Surface({
   as?: "div" | "section" | "article" | "li";
 }) {
   return (
-    <As
-      className={cn(
-        "rounded-2xl border border-violet-line bg-white shadow-[0_1px_2px_rgba(45,20,90,0.04),0_12px_32px_-24px_rgba(45,20,90,0.28)]",
-        className,
-      )}
-    >
+    <As className={cn("rounded-2xl border border-white/70 neu-raised", className)}>
       {children}
     </As>
   );
@@ -37,7 +32,7 @@ export function SectionTitle({
   return (
     <div className="mb-3 flex items-end justify-between gap-3">
       <div className="min-w-0">
-        {eyebrow ? <p className="eyebrow text-violet-mid/80">{eyebrow}</p> : null}
+        {eyebrow ? <p className="eyebrow text-gold">{eyebrow}</p> : null}
         <h2 className="truncate text-[19px] font-semibold tracking-tight text-fog">{title}</h2>
       </div>
       {action}
@@ -79,12 +74,10 @@ export function Button({
         size === "md" && "h-12 px-6 text-[15px]",
         size === "lg" && "h-14 px-7 text-[16px]",
         variant === "primary" &&
-          "bg-gradient-to-b from-violet-soft to-gold text-white shadow-[0_8px_22px_-10px_rgba(109,40,217,0.75)] hover:from-violet-mid hover:to-violet-deep",
-        variant === "secondary" &&
-          "border border-violet-line bg-violet-wash text-violet-deep hover:bg-[#ece4ff]",
-        variant === "ghost" && "text-mist hover:bg-violet-wash",
-        variant === "danger" &&
-          "border border-rust/30 bg-rust/[0.08] text-rust hover:bg-rust/15",
+          "bg-gradient-to-b from-gold-soft to-gold text-white shadow-[0_8px_22px_-10px_rgba(226,80,31,0.8)] hover:from-gold hover:to-gold-deep",
+        variant === "secondary" && "neu-button text-fog hover:text-gold-deep",
+        variant === "ghost" && "text-mist hover:text-gold",
+        variant === "danger" && "border border-rust/30 bg-rust/[0.08] text-rust hover:bg-rust/15",
         full && "w-full",
         className,
       )}
@@ -113,7 +106,7 @@ export function IconButton({
       aria-label={label}
       onClick={onClick}
       className={cn(
-        "relative grid h-10 w-10 shrink-0 place-items-center rounded-full border border-violet-line bg-white text-violet-deep transition-colors hover:bg-violet-wash",
+        "relative grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/70 neu-circle text-fog hover:text-gold",
         className,
       )}
     >
@@ -147,8 +140,8 @@ export function Chip({
       className={cn(
         "shrink-0 rounded-full border px-4 py-2 text-[13px] font-medium transition-all duration-200",
         active
-          ? "border-violet-mid bg-gold text-white"
-          : "border-violet-line bg-white text-mist hover:border-violet-soft hover:text-violet-deep",
+          ? "border-transparent bg-gradient-to-b from-gold-soft to-gold text-white shadow-[0_6px_16px_-8px_rgba(226,80,31,0.85)]"
+          : "border-white/70 neu-button text-mist hover:text-gold",
         className,
       )}
     >
@@ -169,7 +162,7 @@ export function Tag({
       className={cn(
         "inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-medium tracking-wide",
         tone === "neutral" && "bg-violet-wash text-mist",
-        tone === "gold" && "bg-gold/10 text-violet-deep",
+        tone === "gold" && "bg-gold/10 text-gold-deep",
         tone === "sage" && "bg-sage/10 text-sage",
         tone === "rust" && "bg-rust/10 text-rust",
       )}
@@ -181,7 +174,7 @@ export function Tag({
 
 export function Avatar({
   initials,
-  accent = "#7c3aed",
+  accent = "#ff6b3d",
   size = 44,
 }: {
   initials: string;
@@ -237,19 +230,19 @@ export function Sheet({
         type="button"
         aria-label="Close"
         onClick={onClose}
-        className="anim-fade absolute inset-0 bg-[#2e1065]/35 backdrop-blur-[3px]"
+        className="anim-fade absolute inset-0 bg-fog/35 backdrop-blur-[3px]"
       />
-      <div className="anim-sheet relative z-10 flex max-h-[88vh] w-full max-w-[440px] flex-col overflow-hidden rounded-t-3xl border-t border-violet-line bg-white shadow-[0_-24px_60px_-24px_rgba(45,20,90,0.35)]">
+      <div className="anim-sheet relative z-10 flex max-h-[88vh] w-full max-w-[440px] flex-col overflow-hidden rounded-t-3xl border border-white/70 bg-ink shadow-[0_-24px_60px_-24px_rgba(29,31,36,0.4)]">
         <div className="flex items-start justify-between gap-4 border-b border-violet-line bg-bone px-5 pb-4 pt-5">
           <div className="min-w-0">
-            {eyebrow ? <p className="eyebrow text-violet-mid/80">{eyebrow}</p> : null}
+            {eyebrow ? <p className="eyebrow text-gold">{eyebrow}</p> : null}
             <h3 className="truncate text-[19px] font-semibold tracking-tight text-fog">{title}</h3>
           </div>
           <IconButton label="Close" onClick={onClose} className="h-9 w-9">
             <X size={17} />
           </IconButton>
         </div>
-        <div className="flex-1 overflow-y-auto bg-white px-5 py-4">{children}</div>
+        <div className="flex-1 overflow-y-auto bg-ink px-5 py-4">{children}</div>
         {footer ? (
           <div className="border-t border-violet-line bg-bone px-5 py-4">{footer}</div>
         ) : null}
@@ -270,7 +263,7 @@ export function Toast({ message, onDone }: { message: string | null; onDone: () 
   if (!message) return null;
   return (
     <div className="pointer-events-none fixed inset-x-0 top-3 z-[60] flex justify-center px-4">
-      <div className="anim-rise flex items-center gap-2.5 rounded-full border border-violet-line bg-white px-4 py-2.5 text-[13px] font-medium text-fog shadow-[0_12px_36px_-14px_rgba(45,20,90,0.4)]">
+      <div className="anim-rise flex items-center gap-2.5 rounded-full border border-white/70 neu-raised px-4 py-2.5 text-[13px] font-medium text-fog">
         <Check size={15} className="text-gold" />
         {message}
       </div>
@@ -307,7 +300,7 @@ export function Field({
         autoComplete={autoComplete}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="h-12 w-full rounded-xl border border-violet-line bg-white px-4 text-[15px] text-fog outline-none transition-colors placeholder:text-mist/50 focus:border-violet-mid focus:ring-4 focus:ring-violet-wash"
+        className="h-12 w-full rounded-xl border border-white/70 neu-sunken px-4 text-[15px] text-fog outline-none transition-colors placeholder:text-mist/50 focus:border-gold/60"
       />
     </label>
   );
@@ -332,14 +325,14 @@ export function Stepper({
     onChange(String(Math.round(next * 100) / 100));
   };
   return (
-    <div className="flex items-center justify-between gap-3 rounded-xl border border-violet-line bg-white px-3 py-2.5">
+    <div className="flex items-center justify-between gap-3 rounded-xl border border-white/70 neu-raised px-3 py-2.5">
       <span className="text-[14px] text-mist">{label}</span>
       <div className="flex items-center gap-1.5">
         <button
           type="button"
           aria-label={`Decrease ${label}`}
           onClick={() => bump(-1)}
-          className="grid h-8 w-8 place-items-center rounded-lg border border-violet-line bg-violet-wash text-violet-deep active:scale-95"
+          className="grid h-8 w-8 place-items-center rounded-lg border border-white/70 neu-button text-fog active:scale-95"
         >
           −
         </button>
@@ -353,7 +346,7 @@ export function Stepper({
           type="button"
           aria-label={`Increase ${label}`}
           onClick={() => bump(1)}
-          className="grid h-8 w-8 place-items-center rounded-lg border border-violet-line bg-violet-wash text-violet-deep active:scale-95"
+          className="grid h-8 w-8 place-items-center rounded-lg border border-white/70 neu-button text-fog active:scale-95"
         >
           +
         </button>
@@ -368,7 +361,7 @@ export function LineChart({
   values,
   labels,
   height = 150,
-  accent = "#7c3aed",
+  accent = "#ff6b3d",
   unit = "",
   invert,
 }: {
@@ -444,7 +437,7 @@ export function LineChart({
       </svg>
       {hover !== null ? (
         <div
-          className="pointer-events-none absolute -top-1 rounded-lg border border-violet-line bg-white px-2.5 py-1.5 text-[11px] shadow-lg"
+          className="pointer-events-none absolute -top-1 rounded-lg border border-white/70 neu-raised px-2.5 py-1.5 text-[11px]"
           style={{
             left: `${(pts[hover].x / W) * 100}%`,
             transform: "translateX(-50%)",
@@ -471,7 +464,7 @@ export function Ring({
   stroke = 7,
   label,
   sub,
-  accent = "#7c3aed",
+  accent = "#ff6b3d",
 }: {
   value: number;
   max: number;
@@ -487,7 +480,7 @@ export function Ring({
   return (
     <div className="relative grid place-items-center" style={{ width: size, height: size }}>
       <svg width={size} height={size} className="-rotate-90">
-        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="#ece4fb" strokeWidth={stroke} />
+        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="#dfe3e9" strokeWidth={stroke} />
         <circle
           cx={size / 2}
           cy={size / 2}
@@ -513,7 +506,7 @@ export function BarRow({
   label,
   value,
   max,
-  accent = "#7c3aed",
+  accent = "#ff6b3d",
   suffix = "",
 }: {
   label: string;
@@ -532,7 +525,7 @@ export function BarRow({
           {suffix}
         </span>
       </div>
-      <div className="h-1.5 overflow-hidden rounded-full bg-violet-wash">
+      <div className="h-1.5 overflow-hidden rounded-full neu-track">
         <div
           className="h-full rounded-full transition-all duration-700"
           style={{ width: `${pct}%`, background: accent }}
@@ -546,9 +539,9 @@ export function BarRow({
 
 export function Progress({ value }: { value: number }) {
   return (
-    <div className="h-[3px] w-full overflow-hidden rounded-full bg-violet-wash">
+    <div className="h-[3px] w-full overflow-hidden rounded-full neu-track">
       <div
-        className="h-full rounded-full bg-gradient-to-r from-violet-soft to-gold transition-[width] duration-200 ease-out"
+        className="h-full rounded-full bg-gradient-to-r from-gold-soft to-gold transition-[width] duration-200 ease-out"
         style={{ width: `${Math.max(0, Math.min(100, value))}%` }}
       />
     </div>
@@ -565,7 +558,7 @@ export function Empty({
   action?: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed border-violet-line bg-white px-6 py-10 text-center">
+    <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed border-violet-line bg-ink px-6 py-10 text-center neu-sunken">
       <p className="font-display text-[16px] font-medium text-fog">{title}</p>
       <p className="max-w-[30ch] text-[13px] leading-relaxed text-mist">{body}</p>
       {action}
@@ -574,7 +567,7 @@ export function Empty({
 }
 
 export function Skeleton({ className }: { className?: string }) {
-  return <div className={cn("animate-pulse rounded-xl bg-violet-wash", className)} />;
+  return <div className={cn("animate-pulse rounded-xl neu-sunken", className)} />;
 }
 
 /** Counts up to a target on mount — used for the dashboard stat tiles. */
