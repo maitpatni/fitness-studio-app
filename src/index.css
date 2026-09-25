@@ -1,13 +1,19 @@
 @import "tailwindcss";
 
-/* Class-based dark mode — Broodle Build's editor toggles `<html class="dark">`
-   and the preview bridge mirrors that into this iframe. */
+/* Limit Tailwind's source scan to the app source. Without this, v4 walks the
+   whole project root — including the .broodle/app.db database tree — and the
+   first build takes minutes. */
+@source "../src";
+
+/* Class-based dark mode — the Broodle editor toggles <html class="dark">. */
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* Matches the Broodle Build app's own faces (Sora body, Lexend headings). */
   --font-sans: "Sora", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
   --font-display: "Lexend", "Sora", system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", "Lexend", Georgia, serif;
+  --font-cond: "Oswald", "Lexend", system-ui, sans-serif;
+
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
   --color-muted: hsl(var(--muted));
@@ -30,55 +36,85 @@
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
+
+  /* House of Santè — off-white + purple */
+  --color-ink: #faf8ff;
+  --color-ink-soft: #ffffff;
+  --color-ink-raise: #ffffff;
+  --color-gold: #6d28d9;
+  --color-gold-soft: #7c3aed;
+  --color-gold-deep: #5b21b6;
+  --color-bone: #f6f4fb;
+  --color-sage: #15803d;
+  --color-rust: #be123c;
+  --color-fog: #1e1b2e;
+  --color-mist: #6b6784;
+
+  /* Supporting purple/indigo scale */
+  --color-violet-deep: #4c1d95;
+  --color-violet-mid: #7c3aed;
+  --color-violet-soft: #a78bfa;
+  --color-violet-wash: #f3eeff;
+  --color-violet-line: #e7defb;
+  --color-shell: #efebf7;
+  --color-shell-deep: #e3ddf0;
 }
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 0 0% 3.9%;
-  --muted: 0 0% 96.1%;
-  --muted-foreground: 0 0% 45.1%;
+  --background: 40 40% 98%;
+  --foreground: 258 30% 15%;
+  --muted: 262 32% 95%;
+  --muted-foreground: 258 12% 44%;
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 3.9%;
+  --popover-foreground: 258 30% 15%;
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 3.9%;
-  --border: 0 0% 89.8%;
-  --input: 0 0% 89.8%;
-  --primary: 0 0% 9%;
-  --primary-foreground: 0 0% 98%;
-  --secondary: 0 0% 96.1%;
-  --secondary-foreground: 0 0% 9%;
-  --accent: 0 0% 96.1%;
-  --accent-foreground: 0 0% 9%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-  --ring: 0 0% 3.9%;
-  --radius: 0.5rem;
+  --card-foreground: 258 30% 15%;
+  --border: 262 34% 89%;
+  --input: 262 34% 89%;
+  --primary: 263 78% 50%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 262 32% 95%;
+  --secondary-foreground: 263 50% 26%;
+  --accent: 263 78% 50%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 346 80% 43%;
+  --destructive-foreground: 0 0% 100%;
+  --ring: 263 78% 50%;
+  --radius: 0.75rem;
+
+  color-scheme: light;
 }
 
 .dark {
-  --background: 0 0% 3.9%;
-  --foreground: 0 0% 98%;
-  --muted: 0 0% 14.9%;
-  --muted-foreground: 0 0% 63.9%;
-  --popover: 0 0% 3.9%;
-  --popover-foreground: 0 0% 98%;
-  --card: 0 0% 3.9%;
-  --card-foreground: 0 0% 98%;
-  --border: 0 0% 14.9%;
-  --input: 0 0% 14.9%;
-  --primary: 0 0% 98%;
-  --primary-foreground: 0 0% 9%;
-  --secondary: 0 0% 14.9%;
-  --secondary-foreground: 0 0% 98%;
-  --accent: 0 0% 14.9%;
-  --accent-foreground: 0 0% 98%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
-  --ring: 0 0% 83.1%;
+  --background: 40 40% 98%;
+  --foreground: 258 30% 15%;
+  --muted: 262 32% 95%;
+  --muted-foreground: 258 12% 44%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 258 30% 15%;
+  --card: 0 0% 100%;
+  --card-foreground: 258 30% 15%;
+  --border: 262 34% 89%;
+  --input: 262 34% 89%;
+  --primary: 263 78% 50%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 262 32% 95%;
+  --secondary-foreground: 263 50% 26%;
+  --accent: 263 78% 50%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 346 80% 43%;
+  --destructive-foreground: 0 0% 100%;
+  --ring: 263 78% 50%;
 }
 
 * {
   border-color: var(--color-border);
+}
+
+html,
+body,
+#root {
+  height: 100%;
 }
 
 body {
@@ -87,9 +123,127 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: none;
 }
 
-/* Headings take the display face, as they do in the editor. */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
+}
+
+::selection {
+  background: #ddd0ff;
+  color: #2e1065;
+}
+
+/* Slim premium scrollbar */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@utility eyebrow {
+  font-family: var(--font-cond);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Soft violet bloom over light surfaces */
+@utility grain {
+  position: relative;
+}
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.9;
+  background-image: radial-gradient(
+      circle at 50% 0%,
+      rgba(167, 139, 250, 0.14),
+      transparent 58%
+    ),
+    radial-gradient(circle at 0% 100%, rgba(196, 181, 253, 0.12), transparent 55%);
+}
+
+@keyframes hos-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes hos-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes hos-sheet {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes hos-sheen {
+  0% {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(220%) skewX(-18deg);
+  }
+}
+@keyframes hos-pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.28);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgba(124, 58, 237, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(124, 58, 237, 0);
+  }
+}
+
+.anim-rise {
+  animation: hos-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.anim-fade {
+  animation: hos-fade 0.35s ease both;
+}
+.anim-sheet {
+  animation: hos-sheet 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.anim-pulse-ring {
+  animation: hos-pulse-ring 2.4s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-rise,
+  .anim-fade,
+  .anim-sheet,
+  .anim-pulse-ring {
+    animation: none !important;
+  }
 }
