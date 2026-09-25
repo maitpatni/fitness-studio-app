@@ -210,7 +210,7 @@ export function Book() {
                     {t.specialty.map((s) => (
                       <span
                         key={s}
-                        className="rounded-full bg-white/[0.06] px-2 py-0.5 text-[10px] text-mist"
+                        className="rounded-full bg-violet-wash px-2 py-0.5 text-[10px] text-mist"
                       >
                         {s}
                       </span>
@@ -302,10 +302,10 @@ export function Book() {
                 className={cn(
                   "h-12 rounded-xl border font-cond text-[15px] tabular-nums transition-all",
                   clash
-                    ? "cursor-not-allowed border-white/6 bg-white/[0.015] text-mist/30 line-through"
+                    ? "cursor-not-allowed border-violet-line bg-bone text-mist/40 line-through"
                     : active
-                      ? "border-gold bg-gold/15 text-gold-soft"
-                      : "border-white/10 bg-white/[0.03] text-fog hover:border-gold/35",
+                      ? "border-gold bg-gold/12 text-gold"
+                      : "border-violet-line bg-white text-fog hover:border-violet-soft",
                 )}
               >
                 {s}
@@ -316,8 +316,8 @@ export function Book() {
       )}
 
       {conflict && time ? (
-        <Surface className="mt-5 border-rust/35 bg-rust/10 p-4">
-          <p className="text-[13px] font-medium text-[#e8a58c]">Slot already taken</p>
+        <Surface className="mt-5 border-rust/25 bg-rust/[0.06] p-4">
+          <p className="text-[13px] font-medium text-rust">Slot already taken</p>
           <p className="mt-1 text-[12px] leading-relaxed text-mist">
             Double bookings are blocked automatically. Pick another time to continue.
           </p>
